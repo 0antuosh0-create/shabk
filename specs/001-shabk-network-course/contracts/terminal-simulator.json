@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TerminalSimulatorContract",
+  "description": "JSON Schema contract for the in-browser network CLI diagnostic simulator in Shabk",
+  "type": "object",
+  "required": ["command", "args", "flags", "stdout", "stderr", "exitCode"],
+  "properties": {
+    "command": {
+      "type": "string",
+      "enum": ["ping", "tracert", "traceroute", "ipconfig", "ifconfig", "ip", "arp", "netstat", "nslookup", "dig", "help", "clear"]
+    },
+    "args": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "flags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": ["string", "boolean", "number"]
+      }
+    },
+    "stdout": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text", "type"],
+        "properties": {
+          "text": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["normal", "success", "warning", "error", "header", "table-row", "educational-tip"]
+          },
+          "isLtr": { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "stderr": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "exitCode": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "stateDelta": {
+      "type": "object",
+      "description": "Optional in-memory state mutations resulting from the command",
+      "properties": {
+        "arpTableUpdated": { "type": "boolean" },
+        "ipConfigChanged": { "type": "boolean" },
+        "dnsCacheCleared": { "type": "boolean" }
+      }
+    }
+  }
+}

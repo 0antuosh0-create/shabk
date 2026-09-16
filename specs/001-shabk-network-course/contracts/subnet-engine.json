@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SubnetEngineContract",
+  "description": "JSON Schema contract for IPv4 calculation, bitwise mask derivation, and subnet validation in Shabk",
+  "type": "object",
+  "required": [
+    "inputIp",
+    "cidr",
+    "subnetMask",
+    "networkAddress",
+    "broadcastAddress",
+    "firstUsableIp",
+    "lastUsableIp",
+    "totalHosts",
+    "usableHosts",
+    "binaryIp",
+    "binaryMask",
+    "ipClass",
+    "isPrivate"
+  ],
+  "properties": {
+    "inputIp": {
+      "type": "string",
+      "format": "ipv4"
+    },
+    "cidr": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 32
+    },
+    "subnetMask": {
+      "type": "string",
+      "format": "ipv4"
+    },
+    "networkAddress": {
+      "type": "string",
+      "format": "ipv4"
+    },
+    "broadcastAddress": {
+      "type": "string",
+      "format": "ipv4"
+    },
+    "firstUsableIp": {
+      "type": "string",
+      "format": "ipv4"
+    },
+    "lastUsableIp": {
+      "type": "string",
+      "format": "ipv4"
+    },
+    "totalHosts": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "usableHosts": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "binaryIp": {
+      "type": "string",
+      "pattern": "^[01]{8}\\.[01]{8}\\.[01]{8}\\.[01]{8}$"
+    },
+    "binaryMask": {
+      "type": "string",
+      "pattern": "^[01]{8}\\.[01]{8}\\.[01]{8}\\.[01]{8}$"
+    },
+    "ipClass": {
+      "type": "string",
+      "enum": ["A", "B", "C", "D", "E"]
+    },
+    "isPrivate": {
+      "type": "boolean"
+    },
+    "isRfc3021PointToPoint": {
+      "type": "boolean",
+      "description": "True when cidr is /31 providing 2 usable addresses under RFC 3021"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProgressExportContract",
+  "description": "JSON Schema for zero-backend learner progress backup, export, and cross-device restoration in Shabk",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "appIdentifier",
+    "exportedAt",
+    "completedLessonIds",
+    "unlockedLabIds",
+    "completedLabIds",
+    "quizResults",
+    "drillStats",
+    "preferences",
+    "integrityChecksum"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "enum": [1] },
+    "appIdentifier": { "type": "string", "enum": ["shabk-network-learning-platform"] },
+    "exportedAt": { "type": "string", "format": "date-time" },
+    "completedLessonIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "unlockedLabIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "completedLabIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "quizResults": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["bestScore", "passed", "attempts", "lastAttemptDate"],
+        "properties": {
+          "bestScore": { "type": "number", "minimum": 0, "maximum": 100 },
+          "passed": { "type": "boolean" },
+          "attempts": { "type": "integer", "minimum": 1 },
+          "lastAttemptDate": { "type": "string" }
+        }
+      }
+    },
+    "drillStats": {
+      "type": "object",
+      "required": ["totalAttempted", "totalCorrect", "currentStreak", "bestStreak"],
+      "properties": {
+        "totalAttempted": { "type": "integer", "minimum": 0 },
+        "totalCorrect": { "type": "integer", "minimum": 0 },
+        "currentStreak": { "type": "integer", "minimum": 0 },
+        "bestStreak": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "required": ["theme"],
+      "properties": {
+        "theme": { "type": "string", "enum": ["light", "dark"] },
+        "terminalFontSize": { "type": "string", "enum": ["sm", "md", "lg"] }
+      }
+    },
+    "integrityChecksum": {
+      "type": "string",
+      "description": "Simple hash verifying state payload integrity upon import"
+    }
+  }
+}
