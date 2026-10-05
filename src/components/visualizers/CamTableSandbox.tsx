@@ -218,14 +218,14 @@ export const CamTableSandbox: React.FC = () => {
       </div>
 
       {/* Frame Dispatch Controls & Hacker Mode */}
-      <div className="p-4 bg-white dark:bg-slate-900 rounded-2xl mb-6 flex flex-wrap items-center justify-between gap-4 border border-slate-200 dark:border-slate-800 shadow-xs">
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-slate-700 dark:text-slate-300">فرستنده:</span>
+      <div className="p-3.5 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl mb-6 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4 border border-slate-200 dark:border-slate-800 shadow-xs">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
+          <div className="flex items-center justify-between sm:justify-start gap-2">
+            <span className="text-xs font-bold text-slate-700 dark:text-slate-300 shrink-0">فرستنده:</span>
             <select
               value={srcPort}
               onChange={(e) => setSrcPort(Number(e.target.value))}
-              className="text-xs p-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-bold"
+              className="flex-1 sm:flex-none text-xs p-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-bold"
             >
               {CONNECTED_DEVICES.map((d) => (
                 <option key={d.port} value={d.port}>{d.name} (Port {d.port})</option>
@@ -233,14 +233,16 @@ export const CamTableSandbox: React.FC = () => {
             </select>
           </div>
 
-          <ArrowLeftRight size={16} className="text-slate-400" />
+          <div className="hidden sm:flex justify-center">
+            <ArrowLeftRight size={16} className="text-slate-400" />
+          </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-slate-700 dark:text-slate-300">مقصد:</span>
+          <div className="flex items-center justify-between sm:justify-start gap-2">
+            <span className="text-xs font-bold text-slate-700 dark:text-slate-300 shrink-0">مقصد:</span>
             <select
               value={dstPort}
               onChange={(e) => setDstPort(Number(e.target.value))}
-              className="text-xs p-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-bold"
+              className="flex-1 sm:flex-none text-xs p-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-bold max-w-full"
             >
               <option value={0}>برودکست همگانی (FF:FF:FF:FF:FF:FF)</option>
               {CONNECTED_DEVICES.filter((d) => d.port !== srcPort).map((d) => (
@@ -250,17 +252,17 @@ export const CamTableSandbox: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 pt-1 sm:pt-0">
           <button
             onClick={handleSimulateMacFlood}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 text-rose-700 dark:text-rose-300 border border-rose-300 dark:border-rose-800 text-xs font-bold transition-all cursor-pointer select-none"
+            className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 text-rose-700 dark:text-rose-300 border border-rose-300 dark:border-rose-800 text-xs font-bold transition-all cursor-pointer select-none touch-manipulation active:scale-95"
             title="شبیه‌سازی ارسال هزاران مک جعلی برای اشباع حافظه سوئیچ"
           >
             <Skull size={15} />
             <span>حمله MAC Flood</span>
           </button>
 
-          <Button variant="primary" size="sm" onClick={handleSendFrame} icon={<Send size={14} />}>
+          <Button variant="primary" size="sm" onClick={handleSendFrame} icon={<Send size={14} />} className="flex-1 sm:flex-none justify-center">
             ارسال فریم
           </Button>
         </div>

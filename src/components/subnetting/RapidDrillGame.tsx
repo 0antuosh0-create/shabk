@@ -78,7 +78,7 @@ export const RapidDrillGame: React.FC = () => {
         </div>
 
         {/* Streak & Combo Multiplier Badges */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
           {comboMultiplier > 1 && (
             <div className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 text-white font-black text-xs shadow-xs animate-bounce">
               <Zap size={13} className="fill-white" />
@@ -86,8 +86,8 @@ export const RapidDrillGame: React.FC = () => {
             </div>
           )}
 
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-200 font-bold text-xs">
-            <Flame size={16} className={`text-amber-500 fill-amber-500 ${stats.currentStreak >= 3 ? 'animate-pulse' : ''}`} />
+          <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-200 font-bold text-xs">
+            <Flame size={15} className={`text-amber-500 fill-amber-500 ${stats.currentStreak >= 3 ? 'animate-pulse' : ''}`} />
             <span>تسلسل: {toPersianDigits(stats.currentStreak)}</span>
           </div>
 
@@ -98,19 +98,34 @@ export const RapidDrillGame: React.FC = () => {
       </div>
 
       {/* Difficulty Switch */}
-      <div className="flex items-center gap-2 my-4">
-        <span className="text-xs font-bold text-slate-500 dark:text-slate-400">سطح دشواری:</span>
+      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 my-4">
+        <span className="text-xs font-bold text-slate-500 dark:text-slate-400 shrink-0">سطح دشواری:</span>
         {(['easy', 'medium', 'hard'] as const).map((lvl) => (
           <button
             key={lvl}
             onClick={() => setDifficulty(lvl)}
-            className={`text-xs font-bold px-3 py-1.5 rounded-xl border transition-all cursor-pointer ${
+            className={`text-xs font-bold px-2.5 sm:px-3 py-1.5 rounded-xl border transition-all cursor-pointer touch-manipulation active:scale-95 ${
               difficulty === lvl
                 ? 'bg-net-blue text-white border-net-blue shadow-xs scale-[1.02]'
                 : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 hover:bg-slate-50'
             }`}
           >
-            {lvl === 'easy' ? 'آسان (کلاس C)' : lvl === 'medium' ? 'متوسط (کلاس B و C)' : 'پیشرفته (کلاس A)'}
+            {lvl === 'easy' ? (
+              <>
+                <span className="sm:hidden">آسان</span>
+                <span className="hidden sm:inline">آسان (کلاس C)</span>
+              </>
+            ) : lvl === 'medium' ? (
+              <>
+                <span className="sm:hidden">متوسط</span>
+                <span className="hidden sm:inline">متوسط (کلاس B و C)</span>
+              </>
+            ) : (
+              <>
+                <span className="sm:hidden">پیشرفته</span>
+                <span className="hidden sm:inline">پیشرفته (کلاس A)</span>
+              </>
+            )}
           </button>
         ))}
       </div>
@@ -157,18 +172,18 @@ export const RapidDrillGame: React.FC = () => {
 
       {/* Result feedback */}
       {hasSubmitted && (
-        <div className={`p-4 rounded-xl mb-4 flex items-center justify-between border ${
+        <div className={`p-3.5 sm:p-4 rounded-xl mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 border ${
           isCorrect
             ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 text-emerald-900 dark:text-emerald-200'
             : 'bg-rose-50 dark:bg-rose-950/40 border-rose-300 text-rose-900 dark:text-rose-200'
         }`}>
           <div className="flex items-center gap-2.5">
             {isCorrect ? (
-              <CheckCircle2 size={20} className="text-emerald-600 dark:text-emerald-400 shrink-0" />
+              <CheckCircle2 size={18} className="text-emerald-600 dark:text-emerald-400 shrink-0" />
             ) : (
-              <AlertCircle size={20} className="text-rose-600 dark:text-rose-400 shrink-0" />
+              <AlertCircle size={18} className="text-rose-600 dark:text-rose-400 shrink-0" />
             )}
-            <span className="text-sm font-bold">
+            <span className="text-xs sm:text-sm font-bold">
               {isCorrect ? 'پاسخ کاملاً درست است! احسنت.' : `پاسخ اشتباه است. گزینه صحیح: ${drill.expectedAnswer}`}
             </span>
           </div>
@@ -177,7 +192,8 @@ export const RapidDrillGame: React.FC = () => {
             variant="ghost"
             size="sm"
             onClick={() => setShowDerivation(!showDerivation)}
-            icon={<HelpCircle size={15} />}
+            icon={<HelpCircle size={14} />}
+            className="self-end sm:self-auto"
           >
             {showDerivation ? 'پنهان‌سازی فرمول' : 'مشاهده فرمول و راه‌حل'}
           </Button>

@@ -55,7 +55,7 @@ export const ModuleCatalog: React.FC<ModuleCatalogProps> = ({
   return (
     <div className="space-y-8 w-full pb-20 animate-in fade-in duration-200" dir="rtl">
       {/* Hero Welcome Banner */}
-      <div className="p-6 md:p-8 rounded-3xl bg-gradient-to-l from-net-blue/15 via-white to-white dark:from-net-blue/20 dark:via-canvas-card-dark dark:to-canvas-card-dark border border-slate-200/80 dark:border-slate-800 shadow-card relative overflow-hidden">
+      <div className="p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-l from-net-blue/15 via-white to-white dark:from-net-blue/20 dark:via-canvas-card-dark dark:to-canvas-card-dark border border-slate-200/80 dark:border-slate-800 shadow-card relative overflow-hidden">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
           <div className="max-w-3xl space-y-3">
             <div className="flex flex-wrap items-center gap-2">
@@ -68,20 +68,21 @@ export const ModuleCatalog: React.FC<ModuleCatalogProps> = ({
               </Badge>
             </div>
 
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-ink-primary dark:text-ink-light tracking-tight">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-ink-primary dark:text-ink-light tracking-tight leading-snug">
               شَبَک؛ پلتفرم یادگیری مفهومی و کاربردی شبکه
             </h1>
 
-            <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
               بر پایه سرفصل‌های آموزشی مهندس رجایی و آزمون‌های استاندارد بین‌المللی Network+. مجهز به شبیه‌ساز زنده ترمینال، سندباکس ساب‌نتینگ، انیماتور کپسوله‌سازی بسته و سناریوهای عیب‌یابی در دنیای واقعی.
             </p>
 
-            <div className="flex flex-wrap items-center gap-2.5 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-2.5 pt-2">
               <Button
                 variant="primary"
                 size="md"
                 onClick={() => onSelectLesson(modules[0].id, modules[0].lessons[0].id)}
                 icon={<ArrowLeft size={16} />}
+                className="w-full sm:w-auto"
               >
                 شروع یادگیری (مدل‌های مرجع)
               </Button>
@@ -90,6 +91,7 @@ export const ModuleCatalog: React.FC<ModuleCatalogProps> = ({
                 size="md"
                 onClick={onOpenSubnetSandbox}
                 icon={<Binary size={16} />}
+                className="w-full sm:w-auto"
               >
                 سندباکس ساب‌نتینگ
               </Button>
@@ -98,6 +100,7 @@ export const ModuleCatalog: React.FC<ModuleCatalogProps> = ({
                 size="md"
                 onClick={onOpenTerminal}
                 icon={<Terminal size={16} />}
+                className="w-full sm:w-auto"
               >
                 ترمینال شبیه‌ساز CLI
               </Button>

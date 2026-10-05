@@ -301,6 +301,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             />
           </div>
         </div>
+        <div className="h-12 md:hidden" />
       </div>
     </div>
   );
@@ -308,24 +309,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <>
       {/* Mobile Off-Canvas Drawer (< 768px) */}
-      <div
-        className={`fixed inset-0 z-50 md:hidden flex justify-end transition-opacity duration-300 ${
-          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        aria-hidden={!isOpen}
-      >
+      {isOpen && (
         <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs md:hidden transition-opacity duration-300"
           onClick={onClose}
+          aria-hidden={!isOpen}
         />
-        <div
-          className={`relative z-10 w-84 max-w-[85vw] h-full shadow-2xl transform transition-transform duration-300 ease-in-out ${
-            isOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
-          dir="rtl"
-        >
-          {renderSidebarContent(true)}
-        </div>
+      )}
+
+      <div
+        className={`fixed top-0 right-0 bottom-0 z-50 w-80 max-w-[85vw] h-full shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        dir="rtl"
+      >
+        {renderSidebarContent(true)}
       </div>
 
       {/* Desktop Sticky Sidebar (>= 768px): Permanent, sticky, self-start, internal scrolling */}

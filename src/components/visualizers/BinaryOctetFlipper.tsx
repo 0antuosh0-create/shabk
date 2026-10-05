@@ -47,13 +47,13 @@ export const BinaryOctetFlipper: React.FC = () => {
       </div>
 
       {/* Preset Buttons */}
-      <div className="my-4 flex flex-wrap items-center gap-1.5">
-        <span className="text-xs font-bold text-slate-500 dark:text-slate-400 ml-1">ماسک‌های رایج:</span>
+      <div className="my-4 flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 -mx-1 px-1">
+        <span className="text-xs font-bold text-slate-500 dark:text-slate-400 ml-1 shrink-0">ماسک‌های رایج:</span>
         {PRESETS.map((preset) => (
           <button
             key={preset.label}
             onClick={() => setBits([...preset.bits])}
-            className="px-2.5 py-1 text-xs font-mono rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors cursor-pointer"
+            className="px-2.5 py-1 text-xs font-mono rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors cursor-pointer shrink-0 touch-manipulation active:scale-95"
           >
             {preset.label}
           </button>
@@ -61,8 +61,8 @@ export const BinaryOctetFlipper: React.FC = () => {
       </div>
 
       {/* Interactive 8-Bit Grid */}
-      <div className="my-6 p-6 bg-slate-100 dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-slate-800">
-        <div className="grid grid-cols-8 gap-2 max-w-xl mx-auto" dir="ltr">
+      <div className="my-5 p-2.5 sm:p-4 md:p-6 bg-slate-100 dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-slate-800">
+        <div className="grid grid-cols-8 gap-1 sm:gap-2 max-w-xl mx-auto" dir="ltr">
           {bits.map((bit, idx) => {
             const weight = BIT_WEIGHTS[idx];
             const isOn = bit === 1;
@@ -71,26 +71,25 @@ export const BinaryOctetFlipper: React.FC = () => {
               <button
                 key={idx}
                 onClick={() => toggleBit(idx)}
-                className={`flex flex-col items-center justify-between py-3 px-1 rounded-xl border-2 transition-all cursor-pointer select-none ${
+                className={`flex flex-col items-center justify-between py-2 sm:py-3 px-0.5 sm:px-1 rounded-lg sm:rounded-xl border-2 transition-all cursor-pointer select-none touch-manipulation ${
                   isOn
-                    ? 'bg-net-blue text-white border-net-blue shadow-md scale-105 ring-2 ring-sky-200 dark:ring-sky-900'
+                    ? 'bg-net-blue text-white border-net-blue shadow-md scale-[1.02] sm:scale-105 ring-2 ring-sky-200 dark:ring-sky-900'
                     : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-300 dark:border-slate-700 hover:border-slate-400'
                 }`}
               >
-                <span className="text-[11px] font-mono opacity-75 font-semibold">
+                <span className="text-[8px] sm:text-[11px] font-mono opacity-75 font-semibold">
                   2<sup>{7 - idx}</sup>
                 </span>
-                <span className="text-2xl font-extrabold font-mono my-1">
+                <span className="text-lg sm:text-2xl font-extrabold font-mono my-0.5 sm:my-1">
                   {bit}
                 </span>
-                <span className="text-[11px] font-mono font-bold">
+                <span className="text-[9px] sm:text-[11px] font-mono font-bold">
                   {weight}
                 </span>
               </button>
             );
           })}
         </div>
-
         {/* Real-time Math Summary */}
         <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-6 text-center border-t border-slate-200 dark:border-slate-800 pt-5">
           <div>

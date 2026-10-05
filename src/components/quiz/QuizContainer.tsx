@@ -254,7 +254,7 @@ export const QuizContainer: React.FC<QuizContainerProps> = ({ module, onFinish }
               <span>روی هر مورد در ستون سمت راست کلیک کرده و سپس جفت متناظر آن در ستون چپ را انتخاب نمایید:</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs">
               {/* Left Column */}
               <div className="space-y-2">
                 <span className="text-[11px] font-bold text-slate-500 block mb-1">مفاهیم (گروه اول):</span>

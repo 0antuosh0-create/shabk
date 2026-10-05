@@ -18,6 +18,14 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Safe Area Support for Mobile Notches & Navigation Bars */
+  body {
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
   }
 
   #root {
@@ -25,6 +33,19 @@
     display: flex;
     flex-direction: column;
   }
+
+  /* Touch-optimized button interactions */
+  button, input, select, textarea {
+    touch-action: manipulation;
+  }
+}
+
+/* Safe Area Inset Helpers */
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 /* Strict LTR isolation for all code, terminals, pre blocks and technical tokens */
@@ -40,14 +61,26 @@
 pre {
   white-space: pre;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Micro-interaction Card Hover Lift */
 .card-hover-lift {
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.card-hover-lift:hover {
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .card-hover-lift:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Hide scrollbar for smooth mobile carousels & chip rows */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Glow animation for active simulation links */

@@ -107,7 +107,9 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
   return (
     <div
       className={`flex flex-col bg-slate-950 rounded-2xl border border-slate-800 shadow-elevated overflow-hidden font-mono transition-all text-left ${
-        isExpanded ? 'fixed inset-4 z-50 h-[calc(100vh-2rem)]' : 'h-96'
+        isExpanded
+          ? 'fixed inset-0 sm:inset-4 z-50 h-full sm:h-[calc(100vh-2rem)] rounded-none sm:rounded-2xl'
+          : 'h-80 sm:h-96'
       } ${className}`}
       onClick={() => inputRef.current?.focus()}
       dir="ltr"
@@ -147,9 +149,11 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
         <TerminalOutput lines={history} />
 
         {/* Live Input Row */}
-        <div className="flex items-center gap-2 pt-1" dir="ltr">
+        <div className="flex items-center gap-2 pt-1 pb-1" dir="ltr">
           <span className="text-slate-400 text-xs font-bold shrink-0">
-            C:\Users\Student&gt;
+            <span className="hidden sm:inline">C:\Users\Student</span>
+            <span className="sm:hidden">C:\</span>
+            &gt;
           </span>
           <input
             ref={inputRef}
@@ -157,13 +161,23 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent text-slate-100 text-xs font-mono outline-none border-none p-0 focus:ring-0"
+            className="flex-1 bg-transparent text-slate-100 text-xs font-mono outline-none border-none p-0 focus:ring-0 min-w-0"
             autoFocus
             spellCheck={false}
             autoComplete="off"
           />
+          {inputVal.trim().length > 0 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleExecute();
+              }}
+              className="px-2 py-0.5 rounded bg-net-blue text-white text-[10px] font-sans font-bold hover:bg-net-blue/90 active:scale-95 touch-manipulation cursor-pointer shrink-0"
+            >
+              اجرا
+            </button>
+          )}
         </div>
-
         <div ref={endRef} />
       </div>
 

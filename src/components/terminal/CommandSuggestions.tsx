@@ -19,14 +19,16 @@ const COMMON_COMMANDS = [
 
 export const CommandSuggestions: React.FC<CommandSuggestionsProps> = ({ onSelectCommand }) => {
   return (
-    <div className="flex flex-wrap items-center gap-1.5 p-2 bg-slate-900 border-t border-slate-800 text-xs text-left" dir="ltr">
-      <span className="text-slate-400 text-[11px] font-sans font-medium mr-1" dir="rtl">پیشنهاد سریع:</span>
+    <div className="flex items-center gap-1.5 p-2 bg-slate-900 border-t border-slate-800 text-xs text-left overflow-x-auto no-scrollbar select-none" dir="ltr">
+      <span className="text-slate-400 text-[11px] font-sans font-medium mr-1 shrink-0" dir="rtl">
+        پیشنهاد سریع:
+      </span>
       {COMMON_COMMANDS.map((c) => (
         <button
           key={c.cmd}
           onClick={() => onSelectCommand(c.cmd)}
           title={c.descFa}
-          className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-mono text-[11px] transition-colors border border-slate-700 cursor-pointer"
+          className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 active:bg-net-blue active:text-white text-slate-200 hover:text-white font-mono text-[11px] transition-colors border border-slate-700 cursor-pointer shrink-0 whitespace-nowrap touch-manipulation active:scale-95"
         >
           {c.cmd}
         </button>

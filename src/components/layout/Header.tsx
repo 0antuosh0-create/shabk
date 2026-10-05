@@ -11,7 +11,6 @@ import {
   X,
   BookMarked,
   BookOpen,
-
 } from 'lucide-react';
 import { toPersianDigits } from '../../lib/utils/bidi';
 
@@ -26,7 +25,6 @@ export interface HeaderProps {
   totalLessonsCount: number;
   isSidebarOpen: boolean;
   onToggleSidebar: () => void;
-
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -40,7 +38,6 @@ export const Header: React.FC<HeaderProps> = ({
   totalLessonsCount,
   isSidebarOpen,
   onToggleSidebar,
-
 }) => {
   const percent = totalLessonsCount > 0 
     ? Math.round((completedLessonsCount / totalLessonsCount) * 100) 
@@ -55,42 +52,42 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 dark:bg-canvas-card-dark/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 transition-colors shadow-xs">
-      <div className="w-full max-w-[1600px] mx-auto px-4 md:px-8 h-16 flex items-center justify-between gap-4" dir="rtl">
+    <header className="sticky top-0 z-40 bg-white/95 dark:bg-canvas-card-dark/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 transition-colors shadow-2xs">
+      <div className="w-full max-w-[1600px] mx-auto px-3 sm:px-6 md:px-8 h-15 sm:h-16 flex items-center justify-between gap-2 sm:gap-4" dir="rtl">
         {/* Brand & Mobile Drawer Trigger (Right in RTL) */}
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <button
             onClick={onToggleSidebar}
-            className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors md:hidden cursor-pointer"
+            className="min-h-[42px] min-w-[42px] flex items-center justify-center p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors md:hidden cursor-pointer touch-manipulation active:scale-95"
             aria-label="منوی سرفصل‌ها"
           >
-            {isSidebarOpen ? <X size={22} /> : <Menu size={22} />}
+            {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
           <button
             onClick={() => onSelectView('catalog')}
-            className="flex items-center gap-2.5 cursor-pointer text-right group select-none"
+            className="flex items-center gap-2 sm:gap-2.5 cursor-pointer text-right group select-none touch-manipulation"
           >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-net-blue via-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-net-blue/25 group-hover:scale-105 transition-transform shrink-0">
-              <Network size={22} />
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-net-blue via-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-net-blue/25 group-hover:scale-105 transition-transform shrink-0">
+              <Network size={20} className="sm:w-5.5 sm:h-5.5" />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-black text-xl text-ink-primary dark:text-ink-light tracking-tight">
+                <span className="font-black text-lg sm:text-xl text-ink-primary dark:text-ink-light tracking-tight">
                   شَبَک
                 </span>
-                <span className="text-[10px] font-mono font-extrabold px-1.5 py-0.5 rounded-md bg-net-blue/10 text-net-blue border border-net-blue/20">
+                <span className="text-[9px] sm:text-[10px] font-mono font-extrabold px-1.5 py-0.5 rounded-md bg-net-blue/10 text-net-blue border border-net-blue/20">
                   Network+
                 </span>
               </div>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400 block -mt-0.5 font-medium">
+              <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 hidden sm:block -mt-0.5 font-medium">
                 آموزش تعاملی و کاربردی شبکه
               </span>
             </div>
           </button>
         </div>
 
-        {/* Center: Sleek Segmented Navigation Pills (Hidden on mobile, visible on desktop) */}
+        {/* Center: Segmented Navigation Pills (Hidden on mobile, visible on desktop) */}
         <nav className="hidden lg:flex items-center gap-1.5 p-1 bg-slate-100/90 dark:bg-slate-900/80 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-inner">
           {navItems.map((item) => {
             const isActive =
@@ -115,8 +112,13 @@ export const Header: React.FC<HeaderProps> = ({
         </nav>
 
         {/* Left: Progress Pill, Cheatsheet, Backup, Theme (Left in RTL) */}
-        <div className="flex items-center gap-2.5 shrink-0">
-          {/* Progress Widget */}
+        <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+          {/* Mobile Compact Progress Ring Pill */}
+          <div className="flex sm:hidden items-center gap-1 px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[10px] font-bold text-net-blue font-sans select-none">
+            <span>{toPersianDigits(percent)}٪</span>
+          </div>
+
+          {/* Desktop Progress Widget */}
           <div className="hidden sm:flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-xs select-none">
             <div className="flex flex-col items-end">
               <div className="flex items-center gap-1 font-bold text-slate-700 dark:text-slate-300 text-[11px]" dir="rtl">
@@ -139,7 +141,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Quick Cheatsheet Button */}
           <button
             onClick={onOpenCheatsheet}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-bold text-slate-700 dark:text-slate-300 hover:border-amber-400 dark:hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 transition-colors shadow-2xs cursor-pointer select-none"
+            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-bold text-slate-700 dark:text-slate-300 hover:border-amber-400 dark:hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 transition-colors shadow-2xs cursor-pointer select-none touch-manipulation active:scale-95"
             title="جعبه‌ابزار مهندس شبکه (Cheatsheet)"
           >
             <Bookmark size={15} className="text-amber-500 shrink-0" />
@@ -149,11 +151,11 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Backup & Settings Modal Trigger */}
           <button
             onClick={onOpenBackup}
-            className="p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xs cursor-pointer"
+            className="p-2 sm:p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xs cursor-pointer touch-manipulation active:scale-95"
             title="پشتیبان‌گیری و سوابق"
             aria-label="تنظیمات"
           >
-            <Settings size={17} />
+            <Settings size={16} className="sm:w-4.5 sm:h-4.5" />
           </button>
 
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />

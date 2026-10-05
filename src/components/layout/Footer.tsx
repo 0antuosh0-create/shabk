@@ -46,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCheatsheet }
 
   return (
     <footer
-      className="mt-auto border-t border-slate-200/90 dark:border-slate-800 bg-gradient-to-b from-white/95 via-slate-50/90 to-slate-100/80 dark:from-[#0b1322]/95 dark:via-[#090f1d]/95 dark:to-[#060a14]/95 backdrop-blur-md pt-7 pb-24 md:pb-6 px-4 sm:px-6 lg:px-8 text-xs select-none transition-colors mb-16 md:mb-0"
+      className="mt-auto border-t border-slate-200/90 dark:border-slate-800 bg-gradient-to-b from-white/95 via-slate-50/90 to-slate-100/80 dark:from-[#0b1322]/95 dark:via-[#090f1d]/95 dark:to-[#060a14]/95 backdrop-blur-md pt-7 pb-28 md:pb-8 px-4 sm:px-6 lg:px-8 text-xs select-none transition-colors pb-safe"
       dir="rtl"
     >
       <div className="max-w-[1600px] mx-auto space-y-6">
@@ -111,7 +111,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCheatsheet }
             <span className="text-slate-400 font-bold ml-1 hidden sm:inline">دسترسی سریع به ابزارها:</span>
             <button
               onClick={() => { onSelectView('subnet'); scrollToTop(); }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-net-blue text-slate-700 dark:text-slate-300 transition-all shadow-2xs cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-net-blue text-slate-700 dark:text-slate-300 transition-all shadow-2xs cursor-pointer touch-manipulation active:scale-95"
             >
               <Binary size={14} className="text-net-blue" />
               <span className="font-bold">سندباکس ساب‌نت</span>
@@ -119,7 +119,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCheatsheet }
 
             <button
               onClick={() => { onSelectView('terminal'); scrollToTop(); }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-teal-500 text-slate-700 dark:text-slate-300 transition-all shadow-2xs cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-teal-500 text-slate-700 dark:text-slate-300 transition-all shadow-2xs cursor-pointer touch-manipulation active:scale-95"
             >
               <Terminal size={14} className="text-teal-500" />
               <span className="font-bold">ترمینال خط فرمان</span>
@@ -127,7 +127,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCheatsheet }
 
             <button
               onClick={() => { onSelectView('labs'); scrollToTop(); }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-rose-500 text-slate-700 dark:text-slate-300 transition-all shadow-2xs cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-rose-500 text-slate-700 dark:text-slate-300 transition-all shadow-2xs cursor-pointer touch-manipulation active:scale-95"
             >
               <ShieldAlert size={14} className="text-rose-500" />
               <span className="font-bold">آزمایشگاه‌های عیب‌یابی</span>
@@ -135,7 +135,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCheatsheet }
 
             <button
               onClick={() => { onSelectView('resources'); scrollToTop(); }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition-all shadow-2xs cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition-all shadow-2xs cursor-pointer touch-manipulation active:scale-95"
             >
               <BookMarked size={14} className="text-indigo-500" />
               <span className="font-bold">کتابخانه RFC</span>
@@ -143,7 +143,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectView, onOpenCheatsheet }
 
             <button
               onClick={onOpenCheatsheet}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500 text-slate-700 dark:text-slate-300 transition-all shadow-2xs cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500 text-slate-700 dark:text-slate-300 transition-all shadow-2xs cursor-pointer touch-manipulation active:scale-95"
             >
               <Bookmark size={14} className="text-amber-500" />
               <span className="font-bold">جعبه‌ابزار مهندس شبکه</span>

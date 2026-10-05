@@ -48,7 +48,7 @@ export const MultiPlatformCodeBlock: React.FC<MultiPlatformCodeBlockProps> = ({
   return (
     <div className="my-5 rounded-2xl overflow-hidden border border-slate-800 bg-[#0c1322] shadow-card text-xs">
       {/* Top Header Bar */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-[#111a2e] border-b border-slate-800/80">
+      <div className="flex flex-wrap items-center justify-between gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-[#111a2e] border-b border-slate-800/80">
         <div className="flex items-center gap-2">
           {/* Terminal Window Dots */}
           <div className="flex items-center gap-1.5 ml-2" dir="ltr">
@@ -65,25 +65,25 @@ export const MultiPlatformCodeBlock: React.FC<MultiPlatformCodeBlockProps> = ({
         </div>
 
         {/* Platform Tabs & Copy Button */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {normalizedSnippets.length > 1 && (
             <div className="flex items-center gap-1 p-0.5 rounded-lg bg-slate-900 border border-slate-800" dir="ltr">
               {normalizedSnippets.map((s) => (
                 <button
                   key={s.platform}
                   onClick={() => setActivePlatform(s.platform)}
-                  className={`px-2.5 py-1 rounded-md text-[11px] font-mono font-medium transition-colors cursor-pointer ${
+                  className={`px-2 sm:px-2.5 py-1 rounded-md text-[10px] sm:text-[11px] font-mono font-medium transition-colors cursor-pointer touch-manipulation ${
                     activePlatform === s.platform
                       ? 'bg-net-blue text-white shadow-2xs'
                       : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
                   }`}
                 >
-                  {s.label}
+                  <span className="sm:hidden">{s.platform === 'cmd' ? 'CMD' : s.platform === 'powershell' ? 'PS' : 'Bash'}</span>
+                  <span className="hidden sm:inline">{s.label}</span>
                 </button>
               ))}
             </div>
           )}
-
           <button
             onClick={handleCopy}
             className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors border border-slate-700 cursor-pointer select-none"

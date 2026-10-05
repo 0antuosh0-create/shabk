@@ -224,11 +224,11 @@ export const SubnetCalculator: React.FC = () => {
           </div>
 
           {/* Upgraded 4-Octet Binary Matrix Showcase */}
-          <div className="p-6 bg-[#080e1a] text-slate-100 rounded-3xl border border-slate-800/90 shadow-elevated space-y-5" dir="rtl">
+          <div className="p-3 sm:p-5 md:p-6 bg-[#080e1a] text-slate-100 rounded-2xl sm:rounded-3xl border border-slate-800/90 shadow-elevated space-y-4 sm:space-y-5" dir="rtl">
             {/* Top Matrix Title & Legend */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-4">
-              <div className="flex items-center gap-2 font-bold text-sm text-slate-100">
-                <Layers size={17} className="text-net-blue" />
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 border-b border-slate-800/80 pb-3 sm:pb-4">
+              <div className="flex items-center gap-2 font-bold text-xs sm:text-sm text-slate-100">
+                <Layers size={16} className="text-net-blue shrink-0" />
                 <span>تفکیک باینری چهار اکتت آدرس IPv4 و مرز زیرشبکه:</span>
               </div>
 
@@ -245,7 +245,7 @@ export const SubnetCalculator: React.FC = () => {
             </div>
 
             {/* 4 Distinct Octet Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" dir="ltr">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" dir="ltr">
               {binaryOctets.map((octetBits, octetIdx) => {
                 const octetStartBit = octetIdx * 8;
                 const octetEndBit = octetStartBit + 8;
@@ -256,7 +256,7 @@ export const SubnetCalculator: React.FC = () => {
                 return (
                   <div
                     key={octetIdx}
-                    className={`p-4 rounded-2xl border transition-all ${
+                    className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border transition-all ${
                       isSubnetBoundaryOctet
                         ? 'bg-slate-900/90 border-amber-400/60 ring-2 ring-amber-400/20 shadow-md'
                         : isAllNetwork
@@ -292,7 +292,7 @@ export const SubnetCalculator: React.FC = () => {
                     </div>
 
                     {/* 8 Bits in Octet with Place Values */}
-                    <div className="grid grid-cols-8 gap-1">
+                    <div className="grid grid-cols-8 gap-0.5 sm:gap-1">
                       {octetBits.map((bit, bitInOctetIdx) => {
                         const globalBitIdx = octetStartBit + bitInOctetIdx;
                         const isNetBit = globalBitIdx < cidr;
@@ -302,23 +302,23 @@ export const SubnetCalculator: React.FC = () => {
                         return (
                           <div
                             key={bitInOctetIdx}
-                            className={`relative flex flex-col items-center justify-between py-1.5 px-0.5 rounded-lg border text-center transition-all ${
+                            className={`relative flex flex-col items-center justify-between py-1 sm:py-1.5 px-0.5 rounded-md sm:rounded-lg border text-center transition-all ${
                               isNetBit
                                 ? 'bg-sky-500/15 border-sky-500/50 text-sky-300'
                                 : 'bg-emerald-500/15 border-emerald-500/50 text-emerald-300'
                             }`}
                           >
-                            <span className="text-[8px] font-mono text-slate-400 select-none">
+                            <span className="text-[7px] sm:text-[8px] font-mono text-slate-400 select-none">
                               {weight}
                             </span>
-                            <span className="text-xs font-mono font-black my-0.5">
+                            <span className="text-[11px] sm:text-xs font-mono font-black my-0.5">
                               {bit}
                             </span>
 
                             {/* Animated glowing laser boundary marker */}
                             {isLaserBoundary && (
                               <div
-                                className="absolute -right-1 inset-y-0 w-0.5 bg-amber-400 shadow-md shadow-amber-400 z-10 animate-pulse"
+                                className="absolute -right-0.5 sm:-right-1 inset-y-0 w-0.5 bg-amber-400 shadow-md shadow-amber-400 z-10 animate-pulse"
                                 title={`مرز ساب‌نت /${cidr}`}
                               />
                             )}

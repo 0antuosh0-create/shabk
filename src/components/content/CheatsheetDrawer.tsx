@@ -36,9 +36,15 @@ export const CheatsheetDrawer: React.FC<CheatsheetDrawerProps> = ({ isOpen, onCl
   );
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-black/40 backdrop-blur-xs flex justify-end animate-in fade-in duration-200">
+    <div
+      className="fixed inset-0 z-50 overflow-hidden bg-black/60 backdrop-blur-xs flex justify-end animate-in fade-in duration-200"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+      dir="rtl"
+    >
       <div
-        className="w-full max-w-xl bg-white dark:bg-canvas-card-dark h-full shadow-2xl flex flex-col border-r border-slate-200 dark:border-slate-800 animate-in slide-in-from-right duration-300"
+        className="w-full sm:max-w-xl bg-white dark:bg-canvas-card-dark h-full shadow-2xl flex flex-col border-l border-slate-200 dark:border-slate-800 animate-in slide-in-from-left duration-300 pb-safe"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

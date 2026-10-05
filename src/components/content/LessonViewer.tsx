@@ -102,20 +102,21 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({
         </p>
 
         {/* 4-Step Task-Based Navigation Pills */}
-        <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center gap-2">
+        {/* 4-Step Task-Based Navigation Pills (Smooth Horizontal Touch Carousel on Mobile) */}
+        <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar pb-1 -mx-1 px-1">
           <button
             onClick={() => setActiveStepTab('all')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap touch-manipulation ${
               activeStepTab === 'all'
                 ? 'bg-net-blue text-white shadow-xs'
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
             }`}
           >
-            نمایش یکپارچه همه گام‌ها
+            نمایش همه گام‌ها
           </button>
           <button
             onClick={() => setActiveStepTab('step1')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap touch-manipulation ${
               activeStepTab === 'step1'
                 ? 'bg-net-blue text-white shadow-xs'
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
@@ -126,7 +127,7 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({
           </button>
           <button
             onClick={() => setActiveStepTab('step2')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap touch-manipulation ${
               activeStepTab === 'step2'
                 ? 'bg-net-blue text-white shadow-xs'
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
@@ -137,7 +138,7 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({
           </button>
           <button
             onClick={() => setActiveStepTab('step3')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap touch-manipulation ${
               activeStepTab === 'step3'
                 ? 'bg-net-blue text-white shadow-xs'
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
@@ -148,7 +149,7 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({
           </button>
           <button
             onClick={() => setActiveStepTab('step4')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap touch-manipulation ${
               activeStepTab === 'step4'
                 ? 'bg-net-blue text-white shadow-xs'
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
@@ -321,14 +322,15 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({
       </div>
 
       {/* Navigation Footer */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-white dark:bg-canvas-card-dark rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-        <div>
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3.5 sm:p-4 bg-white dark:bg-canvas-card-dark rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="w-full sm:w-auto">
           {prevLesson ? (
             <Button
               variant="outline"
               size="sm"
               onClick={() => onNavigateLesson(module.id, prevLesson.id)}
               icon={<ArrowRight size={16} />}
+              className="w-full sm:w-auto justify-center"
             >
               <span>درس قبلی: {prevLesson.titleFa.slice(0, 22)}...</span>
             </Button>
@@ -337,12 +339,13 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({
           )}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
           <Button
             variant={isCompleted ? 'secondary' : 'success'}
             size="md"
             onClick={() => onMarkComplete(lesson.id)}
             icon={<CheckCircle size={16} />}
+            className="w-full sm:w-auto justify-center"
           >
             {isCompleted ? 'تکمیل شده (علامت مجدد)' : 'علامت به عنوان تکمیل‌شده'}
           </Button>
@@ -352,6 +355,7 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({
             size="md"
             onClick={handleNextAction}
             icon={<ArrowLeft size={16} />}
+            className="w-full sm:w-auto justify-center"
           >
             {nextLesson ? 'درس بعدی' : 'شرکت در آزمون پایان فصل'}
           </Button>
